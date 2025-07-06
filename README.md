@@ -1,15 +1,28 @@
 # Kultra-Mega-Stores-SQL-Analysis
 SQL-based business analysis project using transactional data from Kultra Mega Stores to uncover insights on sales, customer value, and shipping strategy (2009–2012).
+## TABLE OF CONTENT
+- **[Project Overview](https://github.com/manuel-sam/Kultra-Mega-Stores-SQL-Analysis?tab=readme-ov-file#project-overview)**
+- **[Project Scope](https://github.com/manuel-sam/Kultra-Mega-Stores-SQL-Analysis?tab=readme-ov-file#project-scope)**
+- **[Data Source](https://github.com/manuel-sam/Kultra-Mega-Stores-SQL-Analysis?tab=readme-ov-file#data-source)**
+- **[Objectives](https://github.com/manuel-sam/Kultra-Mega-Stores-SQL-Analysis?tab=readme-ov-file#objectives)**
+- **[Understanding Ship Mode](https://github.com/manuel-sam/Kultra-Mega-Stores-SQL-Analysis?tab=readme-ov-file#understanding-ship-mode)**
+- **[Tools Used](https://github.com/manuel-sam/Kultra-Mega-Stores-SQL-Analysis?tab=readme-ov-file#tools-used)**
+- **[Case Scenario I](https://github.com/manuel-sam/Kultra-Mega-Stores-SQL-Analysis?tab=readme-ov-file#case-scenario-i--operational-insights)**
+- **[Case Scenario II()**
+- **[Question 4, 5 and 11 Answered](https://github.com/manuel-sam/Kultra-Mega-Stores-SQL-Analysis?tab=readme-ov-file#question-11-did-the-company-appropriately-spend-shipping-costs-based-on-order-priority)**
+- **[Conclusion](https://github.com/manuel-sam/Kultra-Mega-Stores-SQL-Analysis?tab=readme-ov-file#conclusion)**
 
+  
 ## Project Overview
 This project features a detailed analysis of four years' worth of sales and order data from Kultra Mega Stores, a Nigerian-based office supply and furniture retailer. Using SQL (MySQL Workbench), the project uncovers key business insights, including top-performing products, customer behaviors, shipping cost efficiency, and regional sales performance. The analysis supports strategic decision-making aimed at improving profitability, optimizing shipping logistics, and strengthening customer engagement across various segments.
+
 
 ## Project Scope
 This project explores four years of sales and shipping data from Kultra Mega Stores using SQL. It focuses on finding patterns in customer behavior, product performance, and shipping efficiency. The goal is to uncover practical insights that can help the business improve sales, reduce costs, and serve customers better.
 
-## Data Source
 
-The dataset for this project was provided by DSA Hub as part of the Data Analytics Program. It was designed for learning and portfolio-building purposes and simulates a real-life business scenario for Kultra Mega Stores.
+## Data Source
+The dataset for this project was provided by **The Incubator Hub** as part of the Data Analytics Trainning Program. It was designed for learning and portfolio-building purposes and simulates a real-life business scenario for Kultra Mega Stores.
 
 The data comes in Excel format and includes 19 fields capturing four years of order and customer activity. Below are the key columns and what they represent:
 
@@ -57,14 +70,8 @@ The data comes in Excel format and includes 19 fields capturing four years of or
 
 In addition to the main dataset, a separate `Order_Status` table was later provided. This table contains the `Order_ID` and a new field called `Order_Status`, which tracks whether an item was returned. I used a SQL JOIN operation to merge this table with the main dataset to gain insights into returns by segment and customer. This additional data was essential for answering the question on customer returns and improved the overall depth of the analysis.
 
-These variables work together to give a complete picture of Kultra Mega Stores’ operations—covering customer behavior, product trends, sales performance, logistics, and returns.
+These variables work together to give a complete picture of Kultra Mega Stores’ operations, covering customer behavior, product trends, sales performance, logistics, and returns.
 
-
-### The dataset contains transactional data such as:
-- Customer and segment information
-- Product categories and sub-categories
-- Order and shipping details
-- Revenue, profit, and shipping cost
 
 ## Objectives
 The analysis is split into two case scenarios:
@@ -83,6 +90,7 @@ The analysis is split into two case scenarios:
 10. Check for any product returns and associated segments
 11. Evaluate if shipping costs align with order priority
 
+
 ## Understanding Ship Mode
 Ship Mode refers to how an order is delivered. Each method has different implications for speed, cost, and customer experience.
 
@@ -97,7 +105,8 @@ Using fast and expensive shipping methods like Express Air for low-priority orde
 ## Tools Used
 - MySQL Workbench for SQL queries
 
-##  Case Scenario I – Operational Insights
+
+### Case Scenario I 
 
 ``` SQL
 -- 1. Highest Selling Product Category
@@ -109,14 +118,13 @@ LIMIT 1 ;
 ```
 ![](https://github.com/manuel-sam/Kultra-Mega-Stores-SQL-Analysis/blob/main/1.%20Category%20with%20Highest%20Sales.png)
 
-```
 ```SQL
 --  2. Top And Bottom 3 Region
 --  Top 3 
 SELECT region, SUM(Sales) AS Total_Sales
 FROM kms_table
 GROUP BY Region
-ORDER BY hgh DESC
+ORDER BY Total_Sales DESC
 LIMIT 3 ;
 ```
 ![](https://github.com/manuel-sam/Kultra-Mega-Stores-SQL-Analysis/blob/main/2.%20Top%203%20Region.png) 
@@ -126,13 +134,13 @@ LIMIT 3 ;
 SELECT region, SUM(Sales) AS Total_Sales
 FROM kms_table
 GROUP BY Region
-ORDER BY hgh ASC
+ORDER BY Total_Sales ASC
 LIMIT 3 ;
 ```
 ![](https://github.com/manuel-sam/Kultra-Mega-Stores-SQL-Analysis/blob/main/3.%20Appliances%20Sales%20in%20Otario.png)
 
 ``` SQL
---  3. Appiance Sales in Ontario
+--  3. Appliance Sales in Ontario
 SELECT Province, SUM(sales)
 FROM kms_table
 WHERE province = "Ontario" ;
@@ -159,6 +167,8 @@ LIMIT 1 ;
 ```
 ![](https://github.com/manuel-sam/Kultra-Mega-Stores-SQL-Analysis/blob/main/5.%20Costly%20Shipping%20Method.png)
 
+
+### Case Scenario II
 ``` SQL
 --  CASE SCENARIO II
 --  6. Top 10 Customers and Their Product Preferences
@@ -210,36 +220,35 @@ JOIN order_status AS ORD
 ```
 ![](https://github.com/manuel-sam/Kultra-Mega-Stores-SQL-Analysis/blob/main/10.%20Customers%20with%20Returned%20Items.png)
 
-## Question 11: Did the company appropriately spend shipping costs based on Order Priority?
 
+## Question 4: What should KMS do to increase revenue from the bottom 10 customers?
+From the analysis, the bottom 10 customers contributed very little to overall revenue. To address this, KMS should focus on personalized engagement. First, they need to look at each customer’s buying pattern—what products they bought, how often, and their segment (e.g., consumer, small business). With this knowledge, they can offer targeted promotions, discounts, or bundles tailored to those preferences.
+
+For customers who ordered just once or very rarely, KMS can send follow-up emails or calls to re-engage them. For example, offering a discount code on their next purchase could prompt a repeat order. Another tactic is to introduce a referral bonus where these customers get rewarded for inviting others.
+
+Sometimes, low-spending customers just aren’t aware of the full product range. KMS could send curated product recommendations based on their past order. In essence, small nudges, personalized offers, and a bit more attention can turn these low-value customers into active buyers over time.
+
+
+## Question 5: Which shipping method incurred the most cost for KMS?
+According to the data, the Delivery Truck shipping method incurred the highest overall shipping cost. At first, this might seem strange because Delivery Truck is considered the cheapest per unit. But the reason it became the most expensive overall is likely because it was used for a large volume of orders—including orders where it may not have been the best fit.
+
+What this tells us is that the frequency of usage matters. Even a low-cost method becomes costly if used repeatedly without strategic planning. If KMS wants to control logistics costs, they need to assess not just cost-per-delivery, but whether the delivery method truly matches the order size, urgency, and customer need. This insight shows the importance of smarter logistics planning not just picking the cheapest method, but the right one.
+
+## Question 11: Did the company appropriately spend shipping costs based on Order Priority?
 Based on the analysis of Kultra Mega Stores’ shipping methods and order priorities, it’s clear that there was a mismatch between how orders were prioritized and how they were shipped. Specifically, Express Air, which is the fastest and most expensive shipping method, was often used for orders marked with Low or Medium priority. This is concerning because those orders did not demand urgent delivery, yet they attracted significantly higher shipping costs.
 
 A specific example of this can be seen in Order_ID 19583, placed by a consumer customer named Michael Johnson. The order was marked with Low Priority but was shipped via Express Air, incurring a high shipping cost of ₦89,980. There was no urgent need based on the priority tag, making this an inefficient logistics decision.
 
 On the other hand, Delivery Truck, considered the most economical but slowest shipping method, turned out to have the highest overall cost. This may be due to volume, but it also points to a possible overuse or poor alignment with actual order needs. If the goal was to save cost on non-urgent deliveries, the execution didn’t fully align with that strategy.
 
-To summarize, the data showed that shipping choices were not consistently aligned with the stated order priorities. Express Air should have been reserved for critical or high-priority orders only, but in practice, it was used more broadly. If KMS wants to manage costs better, especially in a competitive retail space, it should review its shipping policies and ensure logistics decisions reflect the actual urgency of each order.
+The data showed that shipping choices were not consistently aligned with the stated order priorities. Express Air should have been reserved for critical or high-priority orders only, but in practice, it was used more broadly. If KMS wants to manage costs better, especially in a competitive retail space, it should review its shipping policies and ensure logistics decisions reflect the actual urgency of each order.
 
-
-
-### Findings:
-Express Air was used even for low-priority orders, which led to cost inefficiency. Delivery Truck, though slower, had the highest total cost—indicating possible overuse or misalignment with priority.
-
-
-
-| Area                | Recommendation                                  |
-|---------------------|--------------------------------------------------|
-| Shipping Strategy   | Align shipping methods with order priorities     |
-| Low Sales Regions   | Focus on marketing and logistics improvements    |
-| Customer Segments   | Upsell to bottom-tier customers                  |
-| High-Value Clients  | Implement loyalty programs                       |
-| Returns Management  | Include return tracking in future datasets       |
 
 ## Conclusion
 By implementing the recommendations and aligning shipping strategies with actual order priorities, Kultra Mega Stores can reduce unnecessary logistics expenses, improve customer satisfaction, and make more informed operational decisions.
 
-I’m currently seeking an internship or junior data analyst role where I can apply my SQL and data interpretation skills, continue learning, and contribute meaningfully to a data-driven team.
+I’m currently seeking an internship or junior data analyst role where I can apply my skills, continue learning, and contribute meaningfully to a data-driven team.
 
-Feel free to connect with me on LinkedIn.
+Feel free to connect with me on [LinkedIn](https://www.linkedin.com/in/emmanuel-samuel001).
 
 Thank you for reading!
