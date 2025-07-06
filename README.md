@@ -8,7 +8,7 @@ SQL-based business analysis project using transactional data from Kultra Mega St
 - **[Understanding Ship Mode](https://github.com/manuel-sam/Kultra-Mega-Stores-SQL-Analysis?tab=readme-ov-file#understanding-ship-mode)**
 - **[Tools Used](https://github.com/manuel-sam/Kultra-Mega-Stores-SQL-Analysis?tab=readme-ov-file#tools-used)**
 - **[Case Scenario I](https://github.com/manuel-sam/Kultra-Mega-Stores-SQL-Analysis?tab=readme-ov-file#case-scenario-i--operational-insights)**
-- **[Case Scenario II()**
+- **[Case Scenario II](https://github.com/manuel-sam/Kultra-Mega-Stores-SQL-Analysis/blob/main/README.md#case-scenario-ii)**
 - **[Question 4, 5 and 11 Answered](https://github.com/manuel-sam/Kultra-Mega-Stores-SQL-Analysis?tab=readme-ov-file#question-11-did-the-company-appropriately-spend-shipping-costs-based-on-order-priority)**
 - **[Conclusion](https://github.com/manuel-sam/Kultra-Mega-Stores-SQL-Analysis?tab=readme-ov-file#conclusion)**
 
@@ -249,6 +249,6 @@ By implementing the recommendations and aligning shipping strategies with actual
 
 I’m currently seeking an internship or junior data analyst role where I can apply my skills, continue learning, and contribute meaningfully to a data-driven team.
 
-Feel free to connect with me on [LinkedIn](https://www.linkedin.com/in/emmanuel-samuel001).
+Feel free to connect with me on [LinkedIn](https://www.linkedin.com/in/emmanuel-samuel001) or send an email to e.samuel4907@gmail.com
 
 Thank you for reading!
