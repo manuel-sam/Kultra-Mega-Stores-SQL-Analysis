@@ -2,7 +2,63 @@
 SQL-based business analysis project using transactional data from Kultra Mega Stores to uncover insights on sales, customer value, and shipping strategy (2009–2012).
 
 ## Project Overview
-Kultra Mega Stores is a major supplier of office supplies and furniture in Nigeria, with a focus on serving both B2B and B2C customers. This project focuses on the Abuja division's order data from 2009 to 2012. 2009 to 2012.
+This project features a detailed analysis of four years' worth of sales and order data from Kultra Mega Stores, a Nigerian-based office supply and furniture retailer. Using SQL (MySQL Workbench), the project uncovers key business insights, including top-performing products, customer behaviors, shipping cost efficiency, and regional sales performance. The analysis supports strategic decision-making aimed at improving profitability, optimizing shipping logistics, and strengthening customer engagement across various segments.
+
+## Project Scope
+This project explores four years of sales and shipping data from Kultra Mega Stores using SQL. It focuses on finding patterns in customer behavior, product performance, and shipping efficiency. The goal is to uncover practical insights that can help the business improve sales, reduce costs, and serve customers better.
+
+## Data Source
+
+The dataset for this project was provided by DSA Hub as part of the Data Analytics Program. It was designed for learning and portfolio-building purposes and simulates a real-life business scenario for Kultra Mega Stores.
+
+The data comes in Excel format and includes 19 fields capturing four years of order and customer activity. Below are the key columns and what they represent:
+
+- **Row_ID** Unique row identifier
+
+- **Order_ID** Unique identifier for each customer order
+
+- **Order_Date** Date the order was placed
+
+- **Order_Priority** Urgency of the order (e.g., Critical, High, Medium, Low)
+
+- **Order_Quantity** Total items ordered
+
+- **Sales** Total sales value for the order
+
+- **Discount** Any discount applied
+
+- **Ship_Mode** Method used to deliver the order (e.g., Express Air, Delivery Truck)
+
+- **Profit** Net profit from the order
+
+- **Unit_Price** Price per unit of product
+
+**Shipping_Cost** Cost of delivering the order
+
+**Customer_Name** Full name of the customer
+
+**Province** Customer's province
+
+**Region** Customer's region
+
+**Customer_Segment** Type of customer (Consumer, Corporate, Small Business)
+
+**Product_Category** Broad category of product (e.g., Technology, Furniture)
+
+**Product_Sub_category** More specific product type
+
+**Product_Name** Full name of the item sold
+
+**Product_Container** Packaging type of the product
+
+**Product_Base_Margin** Base margin used to calculate profitability
+
+**Shiping_Date** Date the order was shipped
+
+In addition to the main dataset, a separate `Order_Status` table was later provided. This table contains the `Order_ID` and a new field called `Order_Status`, which tracks whether an item was returned. I used a SQL JOIN operation to merge this table with the main dataset to gain insights into returns by segment and customer. This additional data was essential for answering the question on customer returns and improved the overall depth of the analysis.
+
+These variables work together to give a complete picture of Kultra Mega Stores’ operations—covering customer behavior, product trends, sales performance, logistics, and returns.
+
 
 ### The dataset contains transactional data such as:
 - Customer and segment information
@@ -40,7 +96,6 @@ Using fast and expensive shipping methods like Express Air for low-priority orde
 
 ## Tools Used
 - MySQL Workbench for SQL queries
-- Excel for data cleaning
 
 ##  Case Scenario I – Operational Insights
 
