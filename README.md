@@ -33,27 +33,27 @@ The data comes in Excel format and includes 19 fields capturing four years of or
 
 - **Unit_Price** Price per unit of product
 
-**Shipping_Cost** Cost of delivering the order
+- **Shipping_Cost** Cost of delivering the order
 
-**Customer_Name** Full name of the customer
+- **Customer_Name** Full name of the customer
 
-**Province** Customer's province
+- **Province** Customer's province
 
-**Region** Customer's region
+- **Region** Customer's region
 
-**Customer_Segment** Type of customer (Consumer, Corporate, Small Business)
+- **Customer_Segment** Type of customer (Consumer, Corporate, Small Business)
 
-**Product_Category** Broad category of product (e.g., Technology, Furniture)
+- **Product_Category** Broad category of product (e.g., Technology, Furniture)
 
-**Product_Sub_category** More specific product type
+- **Product_Sub_category** More specific product type
 
-**Product_Name** Full name of the item sold
+- **Product_Name** Full name of the item sold
 
-**Product_Container** Packaging type of the product
+- **Product_Container** Packaging type of the product
 
-**Product_Base_Margin** Base margin used to calculate profitability
+- **Product_Base_Margin** Base margin used to calculate profitability
 
-**Shiping_Date** Date the order was shipped
+- **Shiping_Date** Date the order was shipped
 
 In addition to the main dataset, a separate `Order_Status` table was later provided. This table contains the `Order_ID` and a new field called `Order_Status`, which tracks whether an item was returned. I used a SQL JOIN operation to merge this table with the main dataset to gain insights into returns by segment and customer. This additional data was essential for answering the question on customer returns and improved the overall depth of the analysis.
 
@@ -106,7 +106,9 @@ FROM kms_table
 GROUP BY Product_Category
 ORDER BY Total_Sales DESC
 LIMIT 1 ;
-RESULT: Technology (5984253)
+```
+![](https://github.com/manuel-sam/Kultra-Mega-Stores-SQL-Analysis/blob/main/1.%20Category%20with%20Highest%20Sales.png)
+
 ```
 ```SQL
 --  2. Top And Bottom 3 Region
@@ -115,8 +117,11 @@ SELECT region, SUM(Sales) AS Total_Sales
 FROM kms_table
 GROUP BY Region
 ORDER BY hgh DESC
-LIMIT 3 ;  
+LIMIT 3 ;
+```
+![](https://github.com/manuel-sam/Kultra-Mega-Stores-SQL-Analysis/blob/main/2.%20Top%203%20Region.png) 
 
+``` SQL
 --  Bottom 3
 SELECT region, SUM(Sales) AS Total_Sales
 FROM kms_table
@@ -124,22 +129,26 @@ GROUP BY Region
 ORDER BY hgh ASC
 LIMIT 3 ;
 ```
+![](https://github.com/manuel-sam/Kultra-Mega-Stores-SQL-Analysis/blob/main/3.%20Appliances%20Sales%20in%20Otario.png)
+
 ``` SQL
 --  3. Appiance Sales in Ontario
 SELECT Province, SUM(sales)
 FROM kms_table
-WHERE province = "Ontario"
-;
+WHERE province = "Ontario" ;
 ```
+![](https://github.com/manuel-sam/Kultra-Mega-Stores-SQL-Analysis/blob/main/3.%20Appliances%20Sales%20in%20Otario.png)
+
 ``` SQL
 --  4. Bottom 10 Custmers
 SELECT  Customer_Name, SUM(sales) AS Total_Sales
 FROM kms_table
 GROUP BY Customer_Name
 ORDER BY Total_Sales ASC
-LIMIT 10
-;
+LIMIT 10 ;
 ```
+![](https://github.com/manuel-sam/Kultra-Mega-Stores-SQL-Analysis/blob/main/4.%20Bottom%2010%20Customers.png)
+
 ``` SQL
 --  5. Most Costly Shipping Method
 SELECT ship_mode, SUM(shipping_cost) AS Total_Shipping_Cost
@@ -148,7 +157,9 @@ GROUP BY Ship_Mode
 ORDER BY Total_Shipping_Cost DESC
 LIMIT 1 ;
 ```
-``` sql
+![](https://github.com/manuel-sam/Kultra-Mega-Stores-SQL-Analysis/blob/main/5.%20Costly%20Shipping%20Method.png)
+
+``` SQL
 --  CASE SCENARIO II
 --  6. Top 10 Customers and Their Product Preferences
 SELECT Customer_Name, Product_Name, Order_Quantity, Sales,
@@ -156,7 +167,9 @@ ROW_NUMBER() OVER(ORDER BY sales DESC) AS position
 FROM kms_table
 LIMIT 10 ;
 ```
-``` sql
+![](https://github.com/manuel-sam/Kultra-Mega-Stores-SQL-Analysis/blob/main/6.%20Valuable%20customers%20and%20their%20products.png)
+
+``` SQL
 --  7. Top Small Business Customer
 SELECT Customer_Name, Customer_Segment, Sales,
 ROW_NUMBER() OVER(ORDER BY sales DESC) AS position
@@ -164,7 +177,9 @@ FROM kms_table
 WHERE Customer_Segment="Small Business"
 LIMIT 1 ;
 ```
-``` sql
+![](https://github.com/manuel-sam/Kultra-Mega-Stores-SQL-Analysis/blob/main/7.%20Small%20business%20with%20the%20highest%20sales.png)
+
+``` SQL
 --  8. Customer With The Most Number of Orders
 SELECT customer_name, order_id, customer_segment, Order_Quantity,
 ROW_NUMBER() OVER(ORDER BY Order_Quantity DESC) AS Position
@@ -172,7 +187,9 @@ FROM kms_table
 WHERE Customer_Segment="Corporate"
 LIMIT 66 ;
 ```
-``` sql
+![](https://github.com/manuel-sam/Kultra-Mega-Stores-SQL-Analysis/blob/main/8.%20Corporate%20Customer%20with%20most%20no.%20of%20orders.png)
+
+``` SQL
 --  9. Most Profitable Customer
 select * from kms_table;
 SELECT customer_name, order_id, customer_segment, Profit,
@@ -180,6 +197,18 @@ ROW_NUMBER() OVER(ORDER BY Profit DESC) AS Position
 FROM kms_table
 LIMIT 1 ;
 ```
+![](https://github.com/manuel-sam/Kultra-Mega-Stores-SQL-Analysis/blob/main/9.%20Most%20Profitable%20Customer.png)
+
+``` SQL
+-- JOIN KMS_TABLE and ORDER_STATUS TOGETHER
+-- 10. Customers with Returned Items
+SELECT customer_name, order_id, customer_segment, Status,
+ROW_NUMBER() OVER(ORDER BY `Order ID` DESC) AS Position
+FROM kms_table AS KMS
+JOIN order_status AS ORD
+	ON KMS.Order_ID = ORD.`Order ID`;
+```
+![](https://github.com/manuel-sam/Kultra-Mega-Stores-SQL-Analysis/blob/main/10.%20Customers%20with%20Returned%20Items.png)
 
 ### Findings:
 Express Air was used even for low-priority orders, which led to cost inefficiency. Delivery Truck, though slower, had the highest total cost—indicating possible overuse or misalignment with priority.
