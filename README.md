@@ -210,6 +210,18 @@ JOIN order_status AS ORD
 ```
 ![](https://github.com/manuel-sam/Kultra-Mega-Stores-SQL-Analysis/blob/main/10.%20Customers%20with%20Returned%20Items.png)
 
+## Question 11: Did the company appropriately spend shipping costs based on Order Priority?
+
+Based on the analysis of Kultra Mega Stores’ shipping methods and order priorities, it’s clear that there was a mismatch between how orders were prioritized and how they were shipped. Specifically, Express Air, which is the fastest and most expensive shipping method, was often used for orders marked with Low or Medium priority. This is concerning because those orders did not demand urgent delivery, yet they attracted significantly higher shipping costs.
+
+A specific example of this can be seen in Order_ID 19583, placed by a consumer customer named Michael Johnson. The order was marked with Low Priority but was shipped via Express Air, incurring a high shipping cost of ₦89,980. There was no urgent need based on the priority tag, making this an inefficient logistics decision.
+
+On the other hand, Delivery Truck, considered the most economical but slowest shipping method, turned out to have the highest overall cost. This may be due to volume, but it also points to a possible overuse or poor alignment with actual order needs. If the goal was to save cost on non-urgent deliveries, the execution didn’t fully align with that strategy.
+
+To summarize, the data showed that shipping choices were not consistently aligned with the stated order priorities. Express Air should have been reserved for critical or high-priority orders only, but in practice, it was used more broadly. If KMS wants to manage costs better, especially in a competitive retail space, it should review its shipping policies and ensure logistics decisions reflect the actual urgency of each order.
+
+
+
 ### Findings:
 Express Air was used even for low-priority orders, which led to cost inefficiency. Delivery Truck, though slower, had the highest total cost—indicating possible overuse or misalignment with priority.
 
@@ -222,3 +234,12 @@ Express Air was used even for low-priority orders, which led to cost inefficienc
 | Customer Segments   | Upsell to bottom-tier customers                  |
 | High-Value Clients  | Implement loyalty programs                       |
 | Returns Management  | Include return tracking in future datasets       |
+
+## Conclusion
+By implementing the recommendations and aligning shipping strategies with actual order priorities, Kultra Mega Stores can reduce unnecessary logistics expenses, improve customer satisfaction, and make more informed operational decisions.
+
+I’m currently seeking an internship or junior data analyst role where I can apply my SQL and data interpretation skills, continue learning, and contribute meaningfully to a data-driven team.
+
+Feel free to connect with me on LinkedIn.
+
+Thank you for reading!
